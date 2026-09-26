@@ -26,3 +26,4 @@ ResTD-artifacts/
 *.npz
 *.log
 *.tar.gz
+*.zip
