@@ -1,0 +1,14 @@
+# Install the CUDA wheel for torch separately; see README.md.
+torch==2.10.0
+transformers==5.13.0
+tokenizers==0.22.2
+accelerate==1.13.0
+numpy==2.5.1
+pandas==2.3.3
+pyarrow==25.0.0
+sentencepiece==0.2.1
+safetensors==0.8.0
+faiss-cpu==1.14.3
+zstandard==0.25.0
+tqdm==4.68.4
+huggingface-hub==1.28.0

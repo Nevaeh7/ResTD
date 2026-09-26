@@ -1,0 +1,85 @@
+{
+  "locale": "es",
+  "embedding_model": "google-bert/bert-base-multilingual-cased",
+  "backbone": "google/mt5-base",
+  "rq": {
+    "num_emb_list": [
+      256,
+      256,
+      256,
+      256
+    ],
+    "e_dim": 32,
+    "layers": [
+      4096,
+      2048,
+      1024,
+      512,
+      256,
+      128,
+      64
+    ],
+    "dropout_prob": 0.0,
+    "bn": false,
+    "loss_type": "mse",
+    "quant_loss_weight": 1.0,
+    "kmeans_init": true,
+    "kmeans_iters": 10,
+    "sk_epsilons": [
+      0.0,
+      0.0,
+      0.0,
+      0.003
+    ],
+    "sk_iters": 50,
+    "epochs": 300,
+    "batch_size": 1024,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "num_workers": 4
+  },
+  "base": {
+    "epochs": 300,
+    "learning_rate": 0.0001,
+    "warmup_ratio": 0.05
+  },
+  "restd": {
+    "max_horizon": 4,
+    "lambda": 0.1,
+    "teacher_temperature": 0.2,
+    "student_temperature": 0.2,
+    "horizon_decay": 0.7,
+    "collision_epsilon": 0.1,
+    "adaptive_collision_margin": 0.001,
+    "max_loss_ratio": 0.05,
+    "warmup_ratio": 0.1,
+    "steps": 1200,
+    "learning_rate": 1e-05
+  },
+  "training": {
+    "micro_batch_size": 8,
+    "effective_batch_size": 128,
+    "max_length": 512,
+    "latent_steps": 3,
+    "alpha": 0.1,
+    "beta": 0.05,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0
+  },
+  "evaluation": {
+    "num_beams": 100,
+    "category_width": 3,
+    "expected_queries": 1656,
+    "decoding": "guided",
+    "relevance": "graded",
+    "constraint_weight": 2.0,
+    "lexical_weight": 0.25,
+    "max_lexical_features": 2,
+    "max_lexical_df_ratio": 0.02
+  },
+  "seeds": [
+    42,
+    2027,
+    2028
+  ]
+}
