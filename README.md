@@ -37,7 +37,7 @@ bash scripts/01_prepare_data.sh
 #    and export residual trajectories along the final stored SIDs.
 bash scripts/02_tokenize.sh us
 
-# 3. Train the base retriever, continue with ResTD, and evaluate.
+# 3. Train ResTD and evaluate.
 bash scripts/03_gr.sh us
 ```
 
@@ -81,14 +81,6 @@ The locale configurations are in `configs/us.json`, `configs/es.json`, and
 - **Item encoder:** BERT-base-uncased for US; multilingual BERT-base-cased for ES/JP.
 - **Indexer:** four 256-entry codebooks, residual dimension 32, a frozen index during GR.
 - **Retriever:** T5-base for US; mT5-base for ES/JP; three latent category states.
-- **ResTD continuation:** H=4, 1,200 optimizer updates, learning rate 1e-5,
-  effective batch 128, microbatch 8, BF16, cosine decay, and 120-update warmup.
-- **Distillation:** teacher/student temperature 0.2, horizon decay 0.7,
-  coefficient 0.1, adaptive collision correction with floor 0.1 and margin 0.001,
-  and a detached cap of 5% of the SID loss. Category heads remain frozen during continuation.
-- **Base initialization:** public pretrained weights followed by base retrieval training.
-  A query-disjoint split of training queries selects the base checkpoint; test
-  queries are not used for this selection.
 
 On memory-constrained GPUs, `--micro-batch-size 4` or `2` increases gradient
 accumulation automatically while retaining effective batch 128. Full training is substantially longer than a
@@ -113,8 +105,7 @@ python -m restd.evaluate --locale us \
 ```
 
 `--decoding standard` selects ordinary category-trie beam search without the
-prefix score adjustment. Evaluation checks the expected population of
-6,014 US, 1,656 ES, and 1,883 JP queries.
+prefix score adjustment.
 
 ## Layout
 
