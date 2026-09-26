@@ -7,21 +7,17 @@ __pycache__/
 raw/
 data/
 outputs/
-artifacts/
 
-# Model weights and checkpoint bundles
 weights/
 checkpoints/
 checkpoint-*/
 ckpt/
-ResTD-artifacts/
 *.safetensors
 *.pt
 *.pth
 *.ckpt
 *.bin
 
-# Generated arrays, logs, and archives
 *.npy
 *.npz
 *.log
