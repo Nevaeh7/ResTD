@@ -4,6 +4,7 @@ __pycache__/
 .ruff_cache/
 .venv/
 .DS_Store
+README_zh-CN.md
 raw/
 data/
 outputs/
